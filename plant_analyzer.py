@@ -1,9 +1,14 @@
+import os
 import streamlit as st
 import base64
 import json
 from openai import OpenAI
 from PIL import Image
 import io
+from dotenv import load_dotenv
+
+load_dotenv()  # loads OPENAI_API_KEY from .env file
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -266,22 +271,21 @@ def main():
     </div>
     """, unsafe_allow_html=True)
 
-    # Sidebar – API key
+    # Sidebar – info
     with st.sidebar:
         st.markdown("### ⚙️ Configuration")
-        api_key = st.text_input(
-            "OpenAI API Key",
-            type="password",
-            placeholder="sk-...",
-            help="Your OpenAI API key with GPT-4o access",
-        )
+        if OPENAI_API_KEY:
+            st.success("✅ API key loaded from .env")
+        else:
+            st.error("❌ OPENAI_API_KEY not found in .env")
         st.markdown("---")
         st.markdown("**Supported formats**")
-        st.markdown("JPG · PNG · WEBP · GIF")
+        st.markdown("JPG · PNG · WEBP")
         st.markdown("**Model**")
         st.markdown("GPT-4o (high detail)")
         st.markdown("---")
-        st.markdown("*Your key is never stored.*")
+        st.markdown("Add your key to a `.env` file:")
+        st.code("OPENAI_API_KEY=sk-...", language="bash")
 
     # Main area
     uploaded_file = st.file_uploader(
@@ -310,13 +314,13 @@ def main():
         analyze_btn = st.button("🔍 Analyze Plant", use_container_width=True)
 
         if analyze_btn:
-            if not api_key:
-                st.error("⚠️ Please enter your OpenAI API key in the sidebar first.")
+            if not OPENAI_API_KEY:
+                st.error("⚠️ OPENAI_API_KEY not found. Please add it to your `.env` file and restart the app.")
                 return
 
             with st.spinner("Analyzing your plant with GPT-4o Vision..."):
                 try:
-                    client = OpenAI(api_key=api_key)
+                    client = OpenAI(api_key=OPENAI_API_KEY)
 
                     # Re-read bytes for encoding
                     uploaded_file.seek(0)
