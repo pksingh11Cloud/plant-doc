@@ -12,7 +12,7 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 # ── Page config ────────────────────────────────────────────────────────────────
 st.set_page_config(
-    page_title="PaudeKaDost - Powered by AI",
+    page_title="PaudeKaDoctor - Powered by AI",
     page_icon="🌿",
     layout="centered",
     initial_sidebar_state="collapsed",
@@ -266,7 +266,7 @@ def main():
     # Hero
     st.markdown("""
     <div class="hero">
-        <h1>🌿 PaudeKaDost</h1>
+        <h1>🌿 PaudeKaDoctor</h1>
         <p>Powered by AI &nbsp;·&nbsp; Upload a plant photo &mdash; get instant diagnosis & remedies powered by GPT-4o Vision</p>
     </div>
     """, unsafe_allow_html=True)
@@ -411,7 +411,7 @@ def main():
     # Footer
     st.markdown("""
     <div class="footer">
-        PaudeKaDost &nbsp;·&nbsp; Powered by AI &nbsp;·&nbsp; GPT-4o Vision &nbsp;·&nbsp; 
+        PaudeKaDoctor &nbsp;·&nbsp; Powered by AI &nbsp;·&nbsp; GPT-4o Vision &nbsp;·&nbsp; 
         For informational purposes only
     </div>
     """, unsafe_allow_html=True)
