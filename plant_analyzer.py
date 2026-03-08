@@ -266,7 +266,7 @@ def main():
     # Hero
     st.markdown("""
     <div class="hero">
-        <h1>🌿 PaudeKaDoctor-Powered by AI</h1>
+        <h1>🌿 PaudeKaDoctor</h1>
         <p>📸 Click a photo of your plant &mdash; we'll tell you what's wrong & how to fix it! &nbsp;·&nbsp; ✨ Powered by AI</p>
     </div>
     """, unsafe_allow_html=True)
